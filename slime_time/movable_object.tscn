@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=3 uid="uid://3ewf7lhul1tv"]
+
+[ext_resource type="Script" uid="uid://d144pji2dc0iv" path="res://MovableObject.cs" id="1_qkirx"]
+[ext_resource type="Texture2D" uid="uid://cunxt3cca2n47" path="res://assets/monsters/Slime.png" id="2_5iwxq"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5iwxq"]
+
+[sub_resource type="Animation" id="Animation_l26bg"]
+resource_name = "move_up"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_xobas"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5iwxq"]
+resource_name = "move_right"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_yewkc"]
+resource_name = "move_left"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_8424j"]
+resource_name = "move_down"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [13, 14, 15, 16]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yewkc"]
+_data = {
+&"RESET": SubResource("Animation_xobas"),
+&"move_down": SubResource("Animation_8424j"),
+&"move_left": SubResource("Animation_yewkc"),
+&"move_right": SubResource("Animation_5iwxq"),
+&"move_up": SubResource("Animation_l26bg")
+}
+
+[node name="MovableObject" type="Node2D"]
+script = ExtResource("1_qkirx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5iwxq")
+centered = false
+hframes = 4
+vframes = 5
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_5iwxq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yewkc")
+}

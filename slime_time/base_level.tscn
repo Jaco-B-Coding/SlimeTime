@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu038puhyc7ai"]
+
+[ext_resource type="Script" uid="uid://dh6ufp8wxdw7a" path="res://BaseLevel.cs" id="1_bo3yr"]
+[ext_resource type="PackedScene" uid="uid://3ewf7lhul1tv" path="res://movable_object.tscn" id="2_5vx1e"]
+
+[node name="BaseLevel" type="Node"]
+script = ExtResource("1_bo3yr")
+
+[node name="MovableObject" parent="." instance=ExtResource("2_5vx1e")]
+position = Vector2(0, 1)
